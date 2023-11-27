@@ -3,8 +3,7 @@ from django.http import HttpResponse
 from .models import Category, Task
 from django.shortcuts import get_object_or_404
 from django.contrib.auth.decorators import login_required
-from .forms import NewTaskForm
-
+from .forms import NewTaskForm, CreateTaskForm
 
 
 def home_list_view(request):
@@ -38,6 +37,27 @@ def task_done_view(request, pk):
     else:
         form = NewTaskForm()
     return render(request, 'task/task_done.html', {'forms': form})
+
+
+@login_required
+def create_task_form(request):
+    if request.method == 'POST':
+        task_form = CreateTaskForm(request.POST)
+        if task_form.is_valid():
+            new_task = task_form.save(commit=False)
+            new_task.user = request.user
+            task_form.save()
+            return redirect('detail_task_view')
+    else:
+        task_form = CreateTaskForm()
+    return render(request, 'task/create_task_form.html', {'form': task_form})
+
+
+
+
+
+
+
 
 
 # def task_search(request):

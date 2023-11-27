@@ -36,7 +36,7 @@
             <div class="navbar-nav">
                 <a class="navbar-brand mx-3" href="{% url 'home_task_view' %}"> خانه </a>
                 <a class="navbar-brand mx-3" href="{% url 'detail_task_view' %}"> وظایف من </a>
-                <a class="navbar-brand mx-3" href="{% url '' %}"> ایجاد وظایف </a>
+                <a class="navbar-brand mx-3" href="{% url 'create_task_form' %}"> ایجاد وظایف </a>
 
                 <div class="mx-2 text-white">
                     {% if user.is_authenticated %}

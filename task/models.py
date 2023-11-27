@@ -13,7 +13,8 @@ class Category(models.Model):
 class Task(models.Model):
     title = models.CharField(max_length=255)
     description = models.TextField()
-    date_time = models.DateTimeField()
+    date_time = models.DateField()
+    time = models.TimeField()
     status = models.BooleanField(default=False)
     user = models.ForeignKey(get_user_model(), on_delete=models.CASCADE, related_name='tasks')
     category = models.ForeignKey(Category, on_delete=models.CASCADE, related_name='tasks')
