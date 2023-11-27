@@ -1,0 +1,48 @@
+{% extends '_base.html' %}
+
+
+{% block title %}
+
+{% endblock title %}
+
+{% block content %}
+    <div class="container mt-4">
+        <div class="row">
+            <div class="col-9">
+                {% if searchs %}
+                    {% for search in searchs %}
+                        <div class="card shadow-sm my-3">
+                            <div class="card-body">
+                                <h5 class="card-title">{{ search.title }}</h5>
+                                <h6 class="card-subtitle mb-2 text-muted small py-2">{{ search.user.username }}</h6>
+                                <p class="card-text py-3">
+                                    {{ search.description }}
+                                </p>
+                                <h6 class="card-subtitle mb-2 text-muted small py-2">{{ search.date_time }}</h6>
+                                {% if search.status %}
+                                    <h6 class="card-subtitle mb-2 text-muted small py-2">okkkkk</h6>
+                                {% else %}
+                                    <h6 class="card-subtitle mb-2 text-muted small py-2">nooooo</h6>
+                                {% endif %}
+
+                                <a class="btn btn-outline-secondary fw-custom border-2 my-1"
+                                   href="{% url 'create_task_done' search.id %}">انجام شد </a>
+
+                                {#                        <a href="{% url 'post_detail' post.id %}" class="btn btn-sm btn-success">Read More</a>#}
+                                {#                        <a href="/blog/{{ post.id }}" class="btn btn-sm btn-success">Read More</a>#}
+
+                            </div>
+                        </div>
+                    {% endfor %}
+                {% else %}
+                    <h4>NOT FOUND</h4>
+                {% endif %}
+            </div>
+
+        </div>
+    </div>
+
+{% endblock content %}
+
+
+
