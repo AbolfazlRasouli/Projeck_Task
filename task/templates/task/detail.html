@@ -23,6 +23,7 @@
                         {% else %}
                             <h6 class="card-subtitle mb-2 text-muted small py-2">nooooo</h6>
                         {% endif %}
+                    <a class="btn btn-outline-secondary fw-custom border-2 my-1" href="{% url 'update_task_form' task.id %}"> ویرایش  </a>
 
                     <a class="btn btn-outline-secondary fw-custom border-2 my-1" href="{% url 'create_task_done' task.id %}">انجام شد </a>
 

@@ -4,19 +4,17 @@ from .models import Category, Task
 from django.shortcuts import get_object_or_404
 from django.contrib.auth.decorators import login_required
 from .forms import NewTaskForm, CreateTaskForm
+from django.contrib.messages import error
 
 
 def home_list_view(request):
     if request.method == 'POST':
         search_query = request.POST['search']
         search = Task.objects.filter(title__contains=search_query)
-        print(search, '********************************************************')
         return render(request, 'task/task_search.html', {'searchs': search})
     else:
-
         # task_list = Task.objects.select_related('tasks')
         task_list = Task.objects.all()
-
         return render(request, 'task/home_list_view.html', {'task_list': task_list})
 
 
@@ -33,9 +31,9 @@ def task_done_view(request, pk):
         form = NewTaskForm(request.POST, instance=task_instance)
         if form.is_valid():
             form.save()
-            return redirect('detail_view')
+            return redirect('detail_task_view')
     else:
-        form = NewTaskForm()
+        form = NewTaskForm(instance=task_instance)
     return render(request, 'task/task_done.html', {'forms': form})
 
 
@@ -51,6 +49,27 @@ def create_task_form(request):
     else:
         task_form = CreateTaskForm()
     return render(request, 'task/create_task_form.html', {'form': task_form})
+
+
+@login_required
+def update_task_form(request, pk):
+    edit_task = get_object_or_404(Task, pk=pk)
+    print((edit_task, '------------------------------------------------------------------------------------------------'))
+
+    if edit_task.user != request.user:
+        error(request, 'You do not have permission to edit this task.')
+        return redirect('detail_task_view')
+
+    if request.method == 'POST':
+        form = CreateTaskForm(request.POST or None, instance=edit_task)
+        if form.is_valid():
+            form.save()
+            return redirect('detail_task_view')
+    else:
+        form = CreateTaskForm(instance=edit_task)
+        # form = CreateTaskForm()
+
+    return render(request, 'task/task_update.html', {'forms': form})
 
 
 
