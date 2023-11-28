@@ -11,5 +11,5 @@ class NewTaskForm(forms.ModelForm):
 class CreateTaskForm(forms.ModelForm):
     class Meta:
         model = Task
-        fields = ['title', 'description', 'date_time', 'time', 'category',]
+        fields = ['title', 'description', 'date_deadline', 'time_deadline', 'category',]
 

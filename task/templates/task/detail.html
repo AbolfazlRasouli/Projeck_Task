@@ -6,9 +6,24 @@
 {% endblock title %}
 
 {% block content %}
+    <header class="bg-dark py-5">
+        <div class="container px-4 px-lg-5 my-5">
+            <div class="text-center text-white">
+                <h1 class="display-4 fw-bold"> سلام {{ task_detail.user_doing.username}}  </h1>
+                {% if task_detail %}
+
+                    <p class="lead fw-normal text-white-50 mb-0">وظایف شما شامل موارد زیر است.   </p>
+                {% else %}
+                    <p class="lead fw-normal text-white-50 mb-0"> شما وظایفی ندارید .  </p>
+                {% endif %}
+
+
+            </div>
+        </div>
+    </header>
     <div class="container mt-4">
         <div class="row">
-            <div class="col-9">
+            <div class="col-sm-9 col-md-6">
                 {% for task in task_detail %}
                 <div class="card shadow-sm my-3">
                     <div class="card-body">

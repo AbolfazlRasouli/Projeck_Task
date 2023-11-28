@@ -20,53 +20,39 @@
 <body>
 
 
-<nav class="navbar navbar-expand-lg navbar-dark bg-info" dir="rtl">
+<nav class="navbar navbar-expand-lg navbar-dark bg-body-tertiary  " dir="rtl">
     <div class="container">
-        <a class="navbar-brand" href="#">
-            <img src="{% static 'icons/book.png' %}" alt="" height="30"
-                 class="d-inline-block align-text-top">
-        </a>
 
-
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup"
+        <button class="navbar-toggler border-2  bg-dark text-white" type="button" data-bs-toggle="collapse"
+                data-bs-target="#navbarNavAltMarkup"
                 aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
-        <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-            <div class="navbar-nav">
-                <a class="navbar-brand mx-3" href="{% url 'home_task_view' %}"> خانه </a>
-                <a class="navbar-brand mx-3" href="{% url 'detail_task_view' %}"> وظایف من </a>
-                <a class="navbar-brand mx-3" href="{% url 'create_task_form' %}"> ایجاد وظایف </a>
 
-                <div class="mx-2 text-white">
-                    {% if user.is_authenticated %}
-                        خوش آمدی {{ user.username }} |
-                        <a class="link-light text-decoration-none" href="{% url 'logout' %}">خروج</a>
-                    {% else %}
-                        <a class="link-light text-decoration-none" href="{% url 'login' %}">ورود</a>
-                        <span> یا </span>
-                        <a class="link-light text-decoration-none" href="{% url 'signup' %}">ثبت نام </a>
-                    {% endif %}
-                </div>
+        <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+            <div class="navbar-nav  ">
+                <a class="navbar-brand mx-3 text-dark" href="{% url 'home_task_view' %}"> خانه </a>
+                <a class="navbar-brand mx-3 text-dark" href="{% url 'detail_task_view' %}"> وظایف من </a>
+                <a class="navbar-brand mx-3 text-dark" href="{% url 'create_task_form' %}"> ایجاد وظایف </a>
+
+                <form class=" d-flex my-2 my-lg-0 mx-4 " method="post">
+                    {% csrf_token %}
+                    <input class="form-control mr-sm-2 mx-2" type="search" placeholder="Search" aria-label="Search" name="search">
+                    <button class="btn btn-outline-dark my-3 my-sm-0" type="submit">search </button>
+                </form>
             </div>
         </div>
 
-                <div class="mx-2 text-white d-flex">
-                <form class="form-inline my-2 my-lg-0" method="post">
-                    {% csrf_token %}
-                    <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" name="search">
-                    <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-                </form>
-                </div>
-
-        {#        <div class="input-group">#}
-        {#            <input type="text" class="form-control rounded-0" placeholder="جست‌وجو" aria-label="Recipient's username"#}
-        {#                   aria-describedby="button-addon2">#}
-        {#            <div class="input-group-append">#}
-        {#                <button class="btn btn-outline-secondary fw-custom border-2 my-1 mx-lg-1" type="submit">جست‌وجو</button>#}
-        {#            </div>#}
-        {#        </div>#}
-
+        <div class="mx-2 text-white">
+            {% if user.is_authenticated %}
+                <span class="text-dark fs-4 ">  خوش آمدی  {{ user.username }}  </span>
+                <span class="text-dark fs-2"> | </span>
+                <a class="text-decoration-none text-dark fs-3" href="{% url 'logout' %}">خروج</a>
+            {% else %}
+                <a class="text-decoration-none text-dark btn btn-outline-dark fw-custom border-2 my-1" href="{% url 'login' %}">ورود</a>
+                <a class=" btn btn-outline-dark fw-custom border-2 my-1 text-decoration-none text-dark " href="{% url 'signup' %}">ثبت نام </a>
+            {% endif %}
+        </div>
 
     </div>
 </nav>

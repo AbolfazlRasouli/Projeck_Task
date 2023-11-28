@@ -13,7 +13,7 @@ def home_list_view(request):
         search = Task.objects.filter(title__contains=search_query)
         return render(request, 'task/task_search.html', {'searchs': search})
     else:
-        # task_list = Task.objects.select_related('tasks')
+        # task_list = Task.objects.select_related('tasks_doing').all()
         task_list = Task.objects.all()
         return render(request, 'task/home_list_view.html', {'task_list': task_list})
 
@@ -21,7 +21,7 @@ def home_list_view(request):
 @login_required
 def detail_view(request):
     tag = request.user
-    task_detail = Task.objects.filter(user=tag)
+    task_detail = Task.objects.filter(user_doing=tag)
     return render(request, 'task/detail.html', {'task_detail': task_detail})
 
 
@@ -43,7 +43,8 @@ def create_task_form(request):
         task_form = CreateTaskForm(request.POST)
         if task_form.is_valid():
             new_task = task_form.save(commit=False)
-            new_task.user = request.user
+            new_task.user_Constructive = request.user
+            new_task.user_doing = request.user
             task_form.save()
             return redirect('detail_task_view')
     else:
@@ -56,7 +57,7 @@ def update_task_form(request, pk):
     edit_task = get_object_or_404(Task, pk=pk)
     print((edit_task, '------------------------------------------------------------------------------------------------'))
 
-    if edit_task.user != request.user:
+    if edit_task.user_Constructive != request.user:
         error(request, 'You do not have permission to edit this task.')
         return redirect('detail_task_view')
 

@@ -6,33 +6,41 @@
 {% endblock title %}
 
 {% block content %}
-    <div class="container mt-4">
-        <div class="row">
-            <div class="col-9">
-                {% for task in task_list %}
-                <div class="card shadow-sm my-3">
-                    <div class="card-body">
-                        <h5 class="card-title">{{ task.title }}</h5>
-                        <h6 class="card-subtitle mb-2 text-muted small py-2">{{ task.user.username }}</h6>
-                        <p class="card-text py-3">
-                            {{ task.description }}
-                        </p>
-                        <h6 class="card-subtitle mb-2 text-muted small py-2">{{ task.date_time}}</h6>
-                        {% if task.status %}
-                            <h6 class="card-subtitle mb-2 text-muted small py-2">okkkkk</h6>
-                        {% else %}
-                            <h6 class="card-subtitle mb-2 text-muted small py-2">nooooo</h6>
-                        {% endif %}
-
-
-
-{#                        <a href="{% url 'post_detail' post.id %}" class="btn btn-sm btn-success">Read More</a>#}
-{#                        <a href="/blog/{{ post.id }}" class="btn btn-sm btn-success">Read More</a>#}
-
-                    </div>
-                </div>
-                {% endfor %}
+    <header class="bg-dark py-5">
+        <div class="container px-4 px-lg-5 my-5">
+            <div class="text-center text-white">
+                <h1 class="display-4 fw-bold"> سلام به سایت مدیریت وظایف خوش آمدید . </h1>
+                <p class="lead fw-normal text-white-50 mb-0">لطفا در اسرع وقت وظایف خود را انجام دهید . </p>
             </div>
+        </div>
+    </header>
+    <div class="container mt-4">
+            <div class=" row row-cols-xl-2">
+        {% for task in task_list %}
+            <div class=" col">
+            <div class="card shadow-sm my-3">
+                <div class="card-body">
+                    <h5 class="card-title">{{ task.title }}</h5>
+                    <span class="card-subtitle mb-2 text-muted small py-2"> سازنده :
+                                : {{ task.user_Constructive.username }}</span>
+                    <span class="text-dark fs-4"> | </span>
+                    <span class="card-subtitle mb-2 text-muted small py-2"> انجام دهنده
+                                : {{ task.user_doing.username }}</span>
+                    <p class="card-text py-3">
+                        توضیحات : {{ task.description }}
+                    </p>
+                    <h6 class="card-subtitle mb-2 text-muted small py-2"> مهلت : {{ task.date_deadline }}
+                        , {{ task.time_deadline }}</h6>
+                    {% if task.status %}
+                        <h6 class="card-subtitle mb-2 text-muted small py-2">انجام شده است . </h6>
+                    {% else %}
+                        <h6 class="card-subtitle mb-2 text-muted small py-2">انجام نشده است . </h6>
+                    {% endif %}
+
+                </div>
+            </div>
+        {% endfor %}
+        </div>
 
         </div>
     </div>

@@ -6,6 +6,20 @@
 {% endblock title %}
 
 {% block content %}
+    <header class="bg-dark py-5">
+        <div class="container px-4 px-lg-5 my-5">
+            <div class="text-center text-white">
+                <h1 class="display-4 fw-bold"> نتیجه ی جست و جو شما : </h1>
+                {% if searchs %}
+                    <p class="lead fw-normal text-white-50 mb-0">وظایف پیدا شده شامل موارد زیر است . </p>
+                {% else %}
+                    <p class="lead fw-normal text-white-50 mb-0"> موردی پیدا نشد . </p>
+                {% endif %}
+
+
+            </div>
+        </div>
+    </header>
     <div class="container mt-4">
         <div class="row">
             <div class="col-9">
