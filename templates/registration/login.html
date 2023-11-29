@@ -23,13 +23,19 @@
                         <a class="text-decoration-none" href="{% url 'password_reset' %}">فراموشی رمز عبور</a>
                     </div>
                 </div>
-                <button type="submit" class="btn btn-success mt-3 w-100">ورود</button>
+                <button type="submit" class="btn btn-dark mt-3 w-100">ورود</button>
                 <div class="line-with-middle-sep">
                   <span>
                     یا
                   </span>
                 </div>
-                <a href="{% url 'signup' %}" class="btn btn-primary mt-2 mb-3 w-100">ثبت نام</a>
+                <a href="{% url 'signup' %}" class="btn btn-dark mt-2 mb-3 w-100">ثبت نام</a>
+                <div class="line-with-middle-sep">
+                  <span>
+                    یا
+                  </span>
+                </div>
+                <a class="btn btn-dark mt-2 w-100 " href="{% url 'home_task_view' %}">بازگشت</a>
             </form>
         </div>
 

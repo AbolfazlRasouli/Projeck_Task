@@ -35,8 +35,7 @@
                 <a class="navbar-brand mx-3 text-dark" href="{% url 'detail_task_view' %}"> وظایف من </a>
                 <a class="navbar-brand mx-3 text-dark" href="{% url 'create_task_form' %}"> ایجاد وظایف </a>
 
-                <form class=" d-flex my-2 my-lg-0 mx-4 " method="post">
-                    {% csrf_token %}
+                <form class=" d-flex my-2 my-lg-0 mx-4 " method="get" action="{% url 'task_search' %}">
                     <input class="form-control mr-sm-2 mx-2" type="search" placeholder="Search" aria-label="Search" name="search">
                     <button class="btn btn-outline-dark my-3 my-sm-0" type="submit">search </button>
                 </form>

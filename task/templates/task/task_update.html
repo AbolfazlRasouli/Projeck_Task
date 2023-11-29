@@ -12,12 +12,12 @@
         <div class="row">
             <div class="col-9">
                 <div class="card shadow my-3">
-                    <h5 class="card-header bg-success text-light px-5">فرم</h5>
+                    <h5 class="card-header bg-dark text-light px-5">فرم</h5>
                     <div class="px-5 pt-3 pb-5">
                         <form method="POST" enctype="multipart/form-data">
                             {% csrf_token %}
                                {{ forms | crispy }}
-                            <button type="submit" class="btn btn-success mt-2">ذخیره</button>
+                            <button type="submit" class="btn btn-dark mt-2">ذخیره</button>
                         </form>
                     </div>
                 </div>
@@ -25,7 +25,7 @@
             <div class="col-3">
 
                 <div class="card my-3 shadow">
-                    <h5 class="card-header bg-warning text-light">راهنما</h5>
+                    <h5 class="card-header bg-dark text-light">راهنما</h5>
                     <div class="card-body">
                         <p class="card-text">
                             اطلاعات وظایف را در فرم این صفحه وارد کنید و سپس بر روی دکمه ذخیره کلیک کنید.
